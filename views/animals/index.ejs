@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to PartyAnimals</h1>
+    <p class="lead mb-4">We help spread the joy of interaction with rare species of all kinds! </p>
+    <a class="btn btn-success btn-lg mt-3" href="/animals/new" role="button">Add new pet</a>
+</div>
+<div class="row text-center">
+    <% animals.forEach(function(animal){ %>
+        <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <img class="card-img-top mb-4" src="<%= animal.image %>">
+                    <div class="card-title">
+                        <h5><%= animal.name %></h5>
+                    </div>
+                    <p>
+                        <a href="/animals/<%= animal._id %>" class="btn btn-small btn-success">More Info</a>
+                    </p>
+                </div>
+            </div>
+    <% }); %>
+</div>
+
+
+
+<% include ../partials/footer %>
