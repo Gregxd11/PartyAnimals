@@ -3,22 +3,43 @@
 <div class="jumbotron">
     <h1 class="display-4">Welcome to PartyAnimals</h1>
     <p class="lead mb-4">We help spread the joy of interaction with rare species of all kinds! </p>
-    <a class="btn btn-success btn-lg mt-3" href="/animals/new" role="button">Add new pet</a>
+    <a class="btn btn-success btn-lg mt-3" href="/animals/new" role="button">Add new post</a>
 </div>
-<div class="row text-center">
-    <% animals.forEach(function(animal){ %>
-        <div class="col-md-3 col-sm-6">
-                <div class="card">
-                    <img class="card-img-top mb-4" src="<%= animal.image %>">
-                    <div class="card-title">
-                        <h5><%= animal.name %></h5>
+<div class="container">
+    <div class="row text-center">
+        <h1 class="text-center col-12">Animals for hire</h1>
+        <% animals.forEach(function(animal){ %>
+            <% if (animal.postType === "offer") { %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card mb-2">
+                        <img class="card-img-top mb-4" src="<%= animal.image %>">
+                        <div class="card-title">
+                            <h5><%= animal.name %></h5>
+                        </div>
+                        <p>
+                            <a href="/animals/<%= animal._id %>" class="btn btn-small btn-success">More Info</a>
+                        </p>
                     </div>
-                    <p>
-                        <a href="/animals/<%= animal._id %>" class="btn btn-small btn-success">More Info</a>
-                    </p>
                 </div>
-            </div>
-    <% }); %>
+            <% } %>
+        <% }); %>
+        <h1 class="text-center col-12">Animal Requests</h1>
+        <% animals.forEach(function(animal){ %>
+            <% if (animal.postType === "request") { %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card mb-2">
+                        <img class="card-img-top mb-4" src="<%= animal.image %>">
+                        <div class="card-title">
+                            <h5><%= animal.name %></h5>
+                        </div>
+                        <p>
+                            <a href="/animals/<%= animal._id %>" class="btn btn-small btn-success">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            <% } %>
+        <% }); %>
+    </div>
 </div>
 
 

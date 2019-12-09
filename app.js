@@ -57,20 +57,35 @@ app.use(indexRoutes);
 app.use("/animals", animalRoutes);
 app.use("/animals/:id/comments", commentRoutes);
 
-app.get("/profile/:id", function(req, res){
-    res.render("profiles/index")
+
+//Profile index
+app.get("/profiles", function(req, res){
+    User.find({}, function (err, allUsers) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("profiles/index", {users: allUsers });
+        }
+    })
 });
 
-app.get("/profile/edit/:id", function(req, res){
+//PROFILE SHOW
+app.get("/profiles/:id", function(req, res){
+    res.render("profiles/show")
+});
+
+//EDIT Route
+app.get("/profiles/:id/edit", function(req, res){
     res.render("profiles/edit")
 });
 
-app.put("/profile/:id", function(req,res){
+//update route
+app.put("/profiles/:id", function(req,res){
     User.findByIdAndUpdate(req.params.id, req.body.user, function (err, updatedUser) {
         if (err) {
             res.redirect("/animals");
         } else {
-            res.redirect("/profile/" + req.params.id);
+            res.redirect("/profiles/" + req.params.id);
         }
     });
 });

@@ -4,7 +4,7 @@ const express = require("express"),
     middleware = require ("../middleware")
 
 
-//INDEX - show all campgrounds
+//INDEX - show all animals
 router.get("/", function (req, res) {
     Animal.find({}, function (err, allAnimals) {
         if (err) {
@@ -15,17 +15,30 @@ router.get("/", function (req, res) {
     })
 });
 
-//CREATE - add new campgrounds to DB
+//CREATE - add new animal to DB
 router.post("/", middleware.isLoggedIn, function (req, res) {
     let name = req.body.name;
-    let image = req.body.image;
     let desc = req.body.description;
     let price = req.body.price;
+    let postType = req.body.postType;
     let author = {
         id: req.user._id,
         username: req.user.username
     }
-    let newAnimal = { name: name, image: image, description: desc, author: author, price: price }
+    if(req.body.image === ""){
+        var image = undefined
+    } else {
+        var image = req.body.image
+    }
+    let newAnimal = 
+        { 
+            name: name, 
+            image: image, 
+            description: desc, 
+            author: author, 
+            price: price, 
+            postType: postType 
+        }
     Animal.create(newAnimal, function (err, newAnimal) {
         if (err) {
             console.log(err)
@@ -35,12 +48,12 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
     })
 });
 
-//NEW - show form to create new campground
+//NEW - show form to create new animal
 router.get("/new", middleware.isLoggedIn, function (req, res) {
     res.render("animals/new")
 })
 
-//SHOW - shows more info about one campground
+//SHOW - shows more info about one animal
 router.get("/:id", function (req, res) {
     Animal.findById(req.params.id).populate("comments").exec(function (err, foundAnimal) {
         if (err) {

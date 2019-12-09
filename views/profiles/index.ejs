@@ -1,20 +1,30 @@
 <% include ../partials/header %>
 
-<a class="btn btn-outline-primary mt-4" href="/profile/edit/<%=currentUser._id%>">Edit profile</a>
-
+<h1 class="text-center">MEMBER LIST</h1>
 <div class="container">
-    <div class="row text-center">
-        <div class="col-12">
-            <h2><strong><%= currentUser.username %></strong></h2>
-        </div>
-        <div class="col-12">
-            <img src="<%= currentUser.image %>" class="img-thumbnail mb-2" alt="profile-picture">
-        </div>
-        <div class="col-12">
-            <h3>
-                <i class="fas fa-map-marker-alt"></i> <%= currentUser.location%>
-            </h3>
-        </div>
+    <div class="row">
+            <% users.forEach(function(user){ %>
+                <div class="col-lg-6">
+                    <div class="card my-3" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="<%= user.image %>" class="card-img" alt="user image">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="profiles/<%= user._id%>">
+                                            <%= user.username %>
+                                        </a>
+                                    </h5>
+                                    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo, ex.</p>
+                                    <p class="card-text"><small class="text-muted"><%= user.location%></small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
     </div>
 </div>
 
