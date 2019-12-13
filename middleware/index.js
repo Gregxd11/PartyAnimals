@@ -7,22 +7,22 @@ middlewareObj.checkAnimalOwnership = function (req, res, next) {
         Animal.findById(req.params.id, function (err, foundAnimal) {
             if (err) {
                 res.flash("error", "Animal not found");
-                res.redirect("back");
+                res.redirect("/animals");
             } else {
                 if (!foundAnimal) {
                     req.flash("error", "Item not found.");
-                    return res.redirect("back");
+                    return res.redirect("/animals");
                 } else if (foundAnimal.author.id.equals(req.user._id)) {
                     next();
                 } else {
                     res.flash("error", "You don't have permission to do that.")
-                    res.redirect("back");
+                    res.redirect("/animals");
                 }
             }
         });
     } else {
         req.flash("error", "You must be logged in to do that")
-        res.redirect("back");
+        res.redirect("/login");
     }
 }
 

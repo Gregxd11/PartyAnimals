@@ -74,3 +74,14 @@ object-fit: cover;
     display:flex;
     }
 }
+
+a {
+    color: #19682d;
+}
+a:hover {
+    color: #0e3919;
+}
+
+.card {
+    background-color: #ebebeb;
+}

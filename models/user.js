@@ -8,7 +8,13 @@ let UserSchema = new mongoose.Schema({
         type: String,
         default: "/imgs/defaultprofile.png"
     },
-    location: String
+    location: String,
+    posts: [
+        {
+            type: mongoose.Schema.Types.ObjectID,
+            ref: "Animal"
+        }
+    ]
 });
 
 UserSchema.plugin(passportLocalMongoose);
