@@ -71,8 +71,15 @@ app.get("/profiles", function(req, res){
 
 //PROFILE SHOW
 app.get("/profiles/:id", function(req, res){
-    res.render("profiles/show")
+    User.findById(req.params.id, function (err, foundUser) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("profiles/show", {user: foundUser });
+        }
+    });
 });
+
 
 //EDIT Route
 app.get("/profiles/:id/edit", function(req, res){
@@ -81,7 +88,7 @@ app.get("/profiles/:id/edit", function(req, res){
 
 //update route
 app.put("/profiles/:id", function(req,res){
-    User.findByIdAndUpdate(req.params.id, req.body.user, function (err, updatedUser) {
+    User.findByIdAndUpdate(req.params.id, req.body.user, {new: true}, function (err, updatedUser) {
         if (err) {
             res.redirect("/animals");
         } else {
@@ -90,6 +97,17 @@ app.put("/profiles/:id", function(req,res){
     });
 });
 
+//Destroy route
+app.delete("/profiles/:id", function(req, res){
+    User.findByIdAndRemove(req.params.id, function (err) {
+        if (err) {
+            res.redirect("/animals");
+        } else {
+            req.flash("success", "Profile successfully deleted.");
+            res.redirect("/profiles");
+        }
+    })
+});
 
 // RUN SERVER
 app.listen(port, () =>{

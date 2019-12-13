@@ -1,61 +1,64 @@
 <% include ../partials/header %>
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-3">
-            <p class="lead">PartyAnimals</p>
-            <div class="list-group">
-                <li class="list-group-item">Info 1</li>
-                <li class="list-group-item">Info 2</li>
-                <li class="list-group-item">Info 3</li>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="thumbnail">
-                <img class="img-reponsive" src="<%= animal.image %>">
-                <div class="caption-full">
-                    <h4 class="pull-right">$<%= animal.price%>/night</h4>
-                    <h4><a href="#"><%= animal.name %></a></h4>
-                    <p><%= animal.description %></p>
-                    <p>
-                        <em>Submitted by <%= animal.author.username %></em>
-                    </p>
-                    <% if(currentUser && animal.author.id.equals(currentUser._id)){ %>
-                        <a class="btn btn-warning" href="/animals/<%= animal._id %>/edit">Edit</a>
-                        <form action="/animals/<%= animal._id %>?_method=DELETE" class="deleteForm" method="POST">
-                            <button class="btn btn-danger" >Delete</button>
-                        </form>
-                   <% } %>
-                </div>
-            </div>
-            <div class="well">
-                <div class="text-right">
-                    <a class="btn btn-success" href="/animals/<%= animal._id %>/comments/new">
-                        Add new comment
-                    </a>
-                </div>
-                <hr>
-                <% animal.comments.forEach(function(comment){ %>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong><%= comment.author.username %></strong>
-                            <span class="pull-right"> 10 days ago</span>
-                            <p>
-                                <%= comment.text %>
-                            </p>
-                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
-                                <a href="/animals/<%=animal._id%>/comments/<%=comment._id%>/edit" class="btn btn-xs btn-warning">Edit</a>
-                                <form class="deleteForm" action="/animals/<%=animal._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                </form>
-                            <% } %>
-                        </div>
-                    </div>
-                <% }) %>
+
+<div class="row mt-5 mx-3">
+    <div class="d-none d-md-block col-md-3 col-lg-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center"><%=animal.author.username%></h5>
+                <img src="<%=animal.author.image%>" class="card-img-top" alt="...">
+                <p class="card-text text-center"><small class="text-muted"><%=animal.author.location%></small></p>
             </div>
         </div>
     </div>
+    <div class="col-md-9 col-lg-10">
+        <div class="card">
+            <img src="<%= animal.image %>" class="card-img-top showPage" alt="...">
+            <div class="card-body pt-2">
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <h1><%= animal.name %></h1>
+                    </div>
+                    <div class="col-4 align-self-center">
+                        <h4 class="text-right">$<%= animal.price%>/hr</h4>
+                    </div>
+                </div>
+                <p class="d-md-none">Submitted by: <%=animal.author.username%></p>
+                <p class="card-text"><%= animal.description %></p>
+                <% if(currentUser && animal.author.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-warning" href="/animals/<%= animal._id %>/edit">Edit</a>
+                    <form action="/animals/<%= animal._id %>?_method=DELETE" class="deleteForm" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                <% } %>
+            </div>
+        </div>
+        <div class="well mt-3">
+            <div class="text-right">
+                <a class="btn btn-success" href="/animals/<%= animal._id %>/comments/new">
+                    Add new comment
+                </a>
+            </div>
+            <hr>
+            <% animal.comments.forEach(function(comment){ %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong><%= comment.author.username %></strong>
+                        <span class="pull-right"> 10 days ago</span>
+                        <p>
+                            <%= comment.text %>
+                        </p>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <a href="/animals/<%=animal._id%>/comments/<%=comment._id%>/edit" class="btn btn-xs btn-warning">Edit</a>
+                            <form class="deleteForm" action="/animals/<%=animal._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
 </div>
-
 
 
 <% include ../partials/footer %>

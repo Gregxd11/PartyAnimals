@@ -4,7 +4,10 @@ const mongoose = require("mongoose"),
 let UserSchema = new mongoose.Schema({
     username: String,
     password: String,
-    image: String,
+    image: {
+        type: String,
+        default: "/imgs/defaultprofile.png"
+    },
     location: String
 });
 

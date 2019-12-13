@@ -1,19 +1,22 @@
 <% include ../partials/header %>
 
-<a class="btn btn-outline-primary mt-4" href="/profiles/<%=currentUser._id%>/edit">Edit profile</a>
-
 <div class="container">
     <div class="row text-center">
-        <div class="col-12">
-            <h2><strong><%= currentUser.username %></strong></h2>
+        <div class="col-12 mt-3">
+            <h2><strong><%= user.username %></strong></h2>
         </div>
         <div class="col-12">
-            <img src="<%= currentUser.image %>" class="img-thumbnail mb-2" alt="profile-picture">
+            <img src="<%= user.image %>" class="img-thumbnail mb-2" alt="profile-picture">
         </div>
-        <div class="col-12">
+        <div class="col-12 mb-0">
             <h3>
-                <i class="fas fa-map-marker-alt"></i> <%= currentUser.location%>
+                <i class="fas fa-map-marker-alt"></i> <%= user.location%>
             </h3>
+        </div>
+        <div class="col-12">
+            <% if(currentUser && currentUser._id.equals(user._id)){ %>
+            <a class="btn btn-outline-primary mt-4" href="/profiles/<%=user._id%>/edit">Edit profile</a>
+            <%}%>
         </div>
     </div>
 </div>

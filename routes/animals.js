@@ -23,7 +23,9 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
     let postType = req.body.postType;
     let author = {
         id: req.user._id,
-        username: req.user.username
+        username: req.user.username,
+        image: req.user.image,
+        location: req.user.location
     }
     if(req.body.image === ""){
         var image = undefined

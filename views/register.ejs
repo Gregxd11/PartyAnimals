@@ -10,16 +10,13 @@
         <div class="col-md-6 col-lg-4">
             <form action="/register" method="POST">
                 <div class="form-group mb-0">
-                    <input class="form-control" type="text" name="username" placeholder="username">
+                    <input class="form-control" type="text" name="username" placeholder="username" required>
                 </div>
                 <div class="form-group mb-0">
-                    <input class="form-control" type="password" name="password" placeholder="password">
-                </div>
-                <div class="form-group mb-0">
-                    <input class="form-control" type="text" name="image" placeholder="profile picture">
+                    <input class="form-control" type="password" name="password" placeholder="password" required>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="location" placeholder="location">
+                    <input class="form-control" type="text" name="location" placeholder="location (city, country)" required>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-lg btn-primary btn-block">

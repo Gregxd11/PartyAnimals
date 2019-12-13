@@ -1,8 +1,4 @@
 const mongoose = require("mongoose");
-      express  = require('express');
-      app      = express();
-
-app.use(express.static(__dirname + "/public"))
 
 // SCHEMA SETUP
 const animalSchema = new mongoose.Schema({
@@ -19,7 +15,9 @@ const animalSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
-        username: String
+        username: String,
+        image: String,
+        location: String,
     },
     comments: [
         {
