@@ -17,10 +17,15 @@ router.get("/", function (req, res) {
 //PROFILE SHOW
 router.get("/:id", function (req, res) {
     User.findById(req.params.id, function (err, foundUser) {
+        console.log(foundUser)
         if (err) {
             console.log(err)
         } else {
+            if (foundUser === null) {
+                res.redirect("back")
+            } else {
             res.render("profiles/show", { user: foundUser });
+            }
         }
     });
 });

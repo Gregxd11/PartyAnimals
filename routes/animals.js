@@ -61,7 +61,11 @@ router.get("/:id", function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            res.render("animals/show", {animal: foundAnimal });
+            if (foundAnimal === null) {
+                res.redirect("back")
+            } else {
+                res.render("animals/show", {animal: foundAnimal });
+            }
         }
     });
 });
@@ -96,6 +100,7 @@ router.delete("/:id", middleware.checkAnimalOwnership, function(req, res){
         }
     })
 });
+
 
 
 module.exports = router;
