@@ -19,11 +19,11 @@ const methodOverride = require("method-override"),
     profileRoutes    = require("./routes/profiles"),
     animalRoutes     = require("./routes/animals"),
     indexRoutes      = require("./routes/index")
-    
+    mongoose.Promise = global.Promise
 
 mongoose.connect(url, { 
     useNewUrlParser: true,
-    // useUnifiedTopology: true, 
+    useUnifiedTopology: true, 
     useFindAndModify: false
     }
 );
