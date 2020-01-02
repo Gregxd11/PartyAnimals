@@ -1,7 +1,8 @@
 const express = require("express"),
     router    = express.Router(),
     Animal    = require ("../models/animal"),
-    middleware = require ("../middleware")
+    middleware = require ("../middleware"),
+    validator = require("validator")
 
 
 //INDEX - show all animals
@@ -58,14 +59,11 @@ router.get("/new", middleware.isLoggedIn, function (req, res) {
 //SHOW - shows more info about one animal
 router.get("/:id", function (req, res) {
     Animal.findById(req.params.id).populate("comments").exec(function (err, foundAnimal) {
-        if (err) {
-            console.log(err)
+        if (validator.isMongoId(req.params.id) && foundAnimal != null) {
+            res.render("animals/show", {animal: foundAnimal });
         } else {
-            if (foundAnimal === null) {
-                res.redirect("back")
-            } else {
-                res.render("animals/show", {animal: foundAnimal });
-            }
+            req.flash("error", "Post not found")
+            res.redirect("/animals")
         }
     });
 });

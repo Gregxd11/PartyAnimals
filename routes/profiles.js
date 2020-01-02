@@ -1,7 +1,8 @@
 const express = require("express"),
     router = express.Router(),
     User = require("../models/user"),
-    middleware = require("../middleware")
+    middleware = require("../middleware"),
+    validator = require("validator")
 
 //Profile index
 router.get("/", function (req, res) {
@@ -17,14 +18,11 @@ router.get("/", function (req, res) {
 //PROFILE SHOW
 router.get("/:id", function (req, res) {
     User.findById(req.params.id, function (err, foundUser) {
-        if (err) {
-            console.log(err)
+        if (validator.isMongoId(req.params.id) && foundUser != null) {
+            res.render("profiles/show", {user: foundUser });
         } else {
-            if (foundUser === null) {
-                res.redirect("back")
-            } else {
-            res.render("profiles/show", { user: foundUser });
-            }
+            req.flash("error", "User not found")
+            res.redirect("/profiles")
         }
     });
 });
