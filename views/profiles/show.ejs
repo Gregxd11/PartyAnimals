@@ -1,26 +1,27 @@
 <% include ../partials/header %>
 
-<div class="container">
-    <div class="row text-center">
-        <div class="col-12 mt-3">
-            <h2><strong><%= user.username %></strong></h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3 text-center">
+            <h1><strong><%= user.username %></strong></h1>
         </div>
-        <div class="col-12">
-            <img src="<%= user.image %>" class="img-thumbnail mb-2" alt="profile-picture">
-        </div>
-        <div class="col-12 mb-0">
-            <h2>About Me:</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia at deleniti est architecto dolorum numquam error dolores hic vero eligendi.</p>
-        </div>
-        <div class="col-12 mb-0">
-            <h3>
-                <i class="fas fa-map-marker-alt"></i> <%= user.location%>
-            </h3>
-        </div>
-        <div class="col-12">
-            <% if(currentUser && currentUser._id.equals(user._id)){ %>
-            <a class="btn btn-outline-primary mt-4" href="/profiles/<%=user._id%>/edit">Edit profile</a>
-            <%}%>
+        <div class="container profile border">
+            <div class="row">
+                <div class="col-6 mb-0">
+                        <img class="img-thumbnail rounded-circle" src="<%= user.image %>" alt="Profile Picture Thumbnail">
+                        <p><i class="fas fa-map-marker-alt"></i> <%= user.location%></p>
+                        <p><i class="fas fa-mobile-alt"></i>+1 234-567-8900</p>
+                </div>
+                <div class="col-6 mb-0">
+                    <h2>ABOUT</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus quos quia sit accusamus. Quaerat id inventore dolorum accusamus corporis. Dolore!</p>
+                </div>
+                <div class="col-12">
+                    <% if(currentUser && currentUser._id.equals(user._id)){ %>
+                    <a class="btn btn-outline-primary mt-4" href="/profiles/<%=user._id%>/edit">Edit profile</a>
+                    <%}%>
+                </div>  
+            </div>
         </div>
     </div>
 </div>
