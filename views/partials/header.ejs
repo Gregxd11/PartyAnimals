@@ -26,6 +26,7 @@
                     <a class="nav-item nav-link" href="/register">Sign Up</a>
                 <% } else { %>
                     <a class="nav-item nav-link" href="/profiles/<%= currentUser._id %>">Signed in as <%=currentUser.username%></a>
+                    <a class="nav-item nav-link" href="/profiles/<%= currentUser._id %>/edit">Edit Profile</a>
                     <a class="nav-item nav-link" href="/logout" tabindex="-1" aria-disabled="true">Logout</a>
                 <% } %>
             </div>

@@ -66,6 +66,16 @@ height: 50vmax;
 object-fit: cover;
 }
 
+#profileContainer{
+    background-image: url(https://images.unsplash.com/photo-1556292990-e4f4a36222e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80);
+    color:white;
+    text-shadow: 2px 2px 5px black;
+}
+
+.about-profile{
+    font-weight: 600;
+}
+
 @media (min-width: 767px){
     .card-img-top.indexPage {
     height: 15vw;

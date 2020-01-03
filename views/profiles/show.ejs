@@ -1,30 +1,37 @@
 <% include ../partials/header %>
 
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     <div class="row">
-        <div class="col-12 mt-3 text-center">
-            <h1><strong><%= user.username %></strong></h1>
-        </div>
-        <div class="container profile border">
+        <div id="profileContainer" class="container border pt-3">
             <div class="row">
-                <div class="col-6 mb-0">
-                        <img class="img-thumbnail rounded-circle" src="<%= user.image %>" alt="Profile Picture Thumbnail">
-                        <p><i class="fas fa-map-marker-alt"></i> <%= user.location%></p>
-                        <p><i class="fas fa-mobile-alt"></i>+1 234-567-8900</p>
+                <div class="col-6 text-center mb-0">
+                    <img class="img-thumbnail rounded-circle" src="<%= user.image %>" alt="Profile Picture Thumbnail">
+                    <h1><strong><%= user.username %></strong></h1>
+                    <h3><i class="fas fa-map-marker-alt"></i> <%= user.location%></h3>
+                    <h3><i class="fas fa-mobile-alt"></i> +1 234-567-8900</h3>
+                    <h3><i class="far fa-envelope"></i> loremip1234@email.com</h3>
                 </div>
-                <div class="col-6 mb-0">
-                    <h2>ABOUT</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus quos quia sit accusamus. Quaerat id inventore dolorum accusamus corporis. Dolore!</p>
-                </div>
-                <div class="col-12">
-                    <% if(currentUser && currentUser._id.equals(user._id)){ %>
-                    <a class="btn btn-outline-primary mt-4" href="/profiles/<%=user._id%>/edit">Edit profile</a>
-                    <%}%>
+                <div class="col-6 about-profile align-self-end text-center">
+                    <h1>ABOUT</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga eum, ex quas odit dolor possimus sed. Ipsum iusto, quae 
+                        recusandae porro labore eius ea modi ipsam, error nihil fugit architecto nulla aliquam illo beatae quidem. Accusamus, 
+                        deleniti illo? Fuga ab placeat tempore minus quos rerum ea illo quasi enim atque. Quibusdam enim molestias iusto laborum 
+                        quidem debitis ex minus labore reiciendis, vitae sint modi consequuntur reprehenderit facere provident ducimus vero sed id eveniet 
+                        dolores perspiciatis!
+                    </p>
                 </div>  
             </div>
         </div>
     </div>
+    <!-- <div class="col-12">
+        <% if(currentUser && currentUser._id.equals(user._id)){ %>
+        <a class="btn btn-outline-primary mt-4" href="/profiles/<%=user._id%>/edit">Edit profile</a>
+        <%}%>
+    </div> -->
+    <h1 class="text-center mt-5"><strong>POSTS</strong></h1>
 </div>
+
 
 
 <% include ../partials/footer %>
